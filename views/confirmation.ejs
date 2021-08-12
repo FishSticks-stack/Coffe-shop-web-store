@@ -1,0 +1,77 @@
+<%- include('layouts/header.ejs') %>
+<%- include('layouts/navigation.ejs') %>
+
+<div class="container">
+     <div class="col-mod-9">
+        <br><h4><strong><%= pageTitle %></strong></h4>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Total Price</th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let totalPrice = 0; for (let p of products) { %> 
+                <tr>
+                    <!--image and description/title-->
+                    <th scope="row"><a href="/img/<%= p.img %>"><img style="width: 100px;" src="/img/<%= p.img %> "></a></th>
+                    <td><strong><%= p.title %></strong></td>
+                    <!--Decreasing and Increasing buttons-->
+                    <td>
+                        &nbsp;&nbsp;&nbsp;<%= p.quantity %>&nbsp;&nbsp;
+                    <td>$<%= p.price %></td>
+                    <!--Total price for each item in row-->
+                    <td><strong>$<%= (p.quantity * p.price).toFixed(2) %></strong></td>
+                    
+                    <!--Gets total overall cost without any tax-->
+                    <% totalPrice = totalPrice + (p.quantity * p.price) %>
+                </tr>
+                <% } %> 
+                <tr>
+                <td></td><td></td><td></td>
+                <td><strong>Subtotal</strong><br>(NOT including tax or shipping)</td>
+                <td><strong>$<%= totalPrice.toFixed(2) %></strong></td>
+                <!--Total price with tax-->
+                <% taxPrice = (totalPrice * .0625) + totalPrice %> 
+                <td><strong>Standard Shipping $4.99</strong></td>
+                </tr>
+                <% shipping = 4.99 %> 
+                <tr>
+                <td></td>
+                <td></td><td></td>
+                <td><strong>Total</strong><br>(including tax and shipping)</td>
+                <td><strong>$<%= (taxPrice + shipping).toFixed(2) %></strong></td>
+                <!--Checkout button-->
+                <td><a href="/thankyou" type="submit" class="btn white-text teal darken-4">Confirm Order</a></td>
+                </tr>
+            </tbody>
+          </table>
+          <br><br>
+          <!--shipping information-->
+          <div class="jumbotron">
+            <h4><strong>Shipping Information</strong></h4>
+              <table class="table">
+                <tr>
+                  <th scope="col"><strong>Address</strong></th>
+                  <th scope="col"><strong>City</strong></th>
+                  <th scope="col"><strong>Zip</strong></th>
+                  <th scope="col"><strong>State</strong></th>
+                </tr>
+                <!-- USER ENTERED INFORMATION GOES HERE. change with db values-->
+                <tr>
+                  <td>123 address street</td>
+                  <td>city name</td>
+                  <td>zip code</td>
+                  <td>state name</td>
+                </tr>
+              </table>
+          </div>
+     </div>
+</div>
+
+<%- include('layouts/footer.ejs') %>

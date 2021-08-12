@@ -1,0 +1,36 @@
+.homeBG {
+    background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('../img/homepage.jpeg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home {
+  text-align:center;
+  color:white;
+}
+
+.carousel-caption {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-item{
+  height: 1000px;
+} 
+.carousel-item img{
+  height: 1000px;
+}
+
+a:link {
+  color: DarkCyan;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: DarkCyan;
+  background-color: transparent;
+  text-decoration: none;
+}

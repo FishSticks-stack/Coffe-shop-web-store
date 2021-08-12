@@ -1,0 +1,46 @@
+
+<%- include('layouts/header.ejs') %>
+<%- include('layouts/navigation.ejs') %>
+
+    <!-- Start your project here-->
+    <div class="container">
+
+      <br><h4><strong><%= pageTitle %></strong></h4><br>
+      <div class="row">
+        
+        <% for(let p of products) { %>
+
+        <div class="col-md-4">
+          <!-- Card -->
+          <div class="card">
+              <!-- Card Image -->
+              <a href="/img/<%= p.img %>"> <img class="card-img-top" src="/img/<%= p.img %>" alt="Card image cap"> </a>
+
+            <!-- Card Content -->
+            <div class="card-body">
+              <!-- Card Title -->
+              <h4 class="card-title"><a href="/coffee/<%= p._id %>"><%= p.title %></a></h4>
+              <h5 class="card-price"><a>$<%= p.price %></a></h5>
+              <p class="card-text">
+                <a><%= p.description %></a>
+              </p>
+              <!-- Button -->
+              <form action="/add-cart" method="POST">
+                <input type="hidden" name="id" value="<%= p._id %>">
+                <input type="hidden" name="catId" value="coffee">
+                <button type="submit" class="btn white-text teal darken-4">Add To Cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- End Card -->
+
+        <% } %>
+
+      </div>
+    </div>
+    
+
+    <!-- End your project here-->
+
+<%- include('layouts/footer.ejs') %>

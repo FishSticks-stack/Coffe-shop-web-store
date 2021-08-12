@@ -1,0 +1,61 @@
+<%- include('layouts/header.ejs') %>
+<%- include('layouts/navigation.ejs') %>
+
+<div class="container">
+     <div class="col-mod-9">
+        <br><h4><strong><%= pageTitle %></strong></h4>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Total Price</th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let totalPrice = 0; for (let p of products) { %> 
+                <tr>
+                    <!--image and description/title-->
+                    <th scope="row"><a href="/img/<%= p.img %>"><img style="width: 100px;" src="/img/<%= p.img %> "></a></th>
+                    <td><strong><%= p.title %></strong></td>
+                    <% if(p.quantity > 1){ %>
+                    <!--Decreasing and Increasing buttons-->
+                    <td><a href="/decrease/<%= p.itemId %>" type="submit" class="btn btn-sm waves-effect waves-light">-</a>
+                    <% } else if (p.quantity = 1){ %>
+                    <td><a href="/remove/<%= p.itemId %>" type="submit" class="btn btn-sm waves-effect waves-light">-</a>
+                      <% } %>
+                        &nbsp;&nbsp;<%= p.quantity %>&nbsp;&nbsp;
+                        <a href="/increase/<%= p.itemId %>" type="submit" class="btn waves-effect waves light btn-sm">+</a></td>
+                    <td>$<%= p.price %></td>
+                    <!--Total price for each item in row-->
+                    <td><strong>$<%= (p.quantity * p.price).toFixed(2) %></strong></td>
+                    <!--Delete button-->
+                    <td><a href="/remove/<%= p.itemId %>" type="submit" class="btn btn-outline-danger waves-light">Delete</a></td>
+                    <!--Gets total overall cost without any tax-->
+                    <% totalPrice = totalPrice + (p.quantity * p.price) %>
+                </tr>
+                <% } %> 
+                <tr>
+                <td></td><td></td><td></td>
+                <td><strong>Subtotal</strong><br>(NOT including tax)</td>
+                <td><strong>$<%= totalPrice.toFixed(2) %></strong></td>
+                <!--Total price with tax-->
+                <% taxPrice = (totalPrice * .0625) + totalPrice %> 
+                <td></td>
+                </tr>
+                <tr>
+                <td></td><td></td><td></td>
+                <td><strong>Total</strong><br>(including tax)</td>
+                <td><strong>$<%= taxPrice.toFixed(2) %></strong></td>
+                <!--Checkout button-->
+                <td><a href="/checkout" type="submit" class="btn white-text teal darken-4">Checkout</a></td>
+                </tr>
+            </tbody>
+          </table>
+     </div>
+</div>
+
+<%- include('layouts/footer.ejs') %>

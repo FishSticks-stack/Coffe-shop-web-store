@@ -1,0 +1,24 @@
+<%- include('layouts/header.ejs') %>
+<%- include('layouts/navigation.ejs') %>
+
+<div class="container">
+    <br><h4><strong><%= pageTitle %></strong></h4><br>
+    <div class="row">
+        <div class="col">
+            <a href="/img/<%=prod.img %>"> <img class="card-img-top" src="/img/<%= prod.img %>" alt="Card image cap"></a>
+        </div>
+        <div class="col">
+            <h5><strong><%= prod.title %></strong></h5>
+            <h6><strong>Price: <%= prod.price %></strong></h6>
+            <h5><strong>Quantity: <%= prod.quantity %></strong></h5>
+            <p><%= prod.description %></p>
+            <form action="/add-cart" method="POST">
+                <input type="hidden" name="id" value="<%= prod._id %>">
+                <input type="hidden" name="catId" value="coffee">
+                <button type="submit" class="btn white-text teal darken-4">Add To Cart</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('layouts/footer.ejs') %>

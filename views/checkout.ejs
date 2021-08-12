@@ -1,0 +1,38 @@
+<%- include('layouts/header.ejs') %>
+<%- include('layouts/navigation.ejs') %>
+<!--login page with email and password-->
+<!--login page with email and password-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <section>
+                <!-- Default form login -->
+                <br><br><br>
+                <form style="margin-left: 20%;" class="text-center border border-light p-5" action="/signed-in-checkout">
+                    <p class="h4 mb-4">Sign In</p>
+                    <!-- Email -->
+                    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" name="email" required>
+                    <!-- Password -->
+                    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="pass" required>
+
+                    <!-- Sign in button -->
+                    <button style="margin-left: auto;" class="btn white-text teal darken-4" type="submit">Sign in</button>
+
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <!-- Forgot password -->
+                           <!-- <a href="">Forgot Password?</a> --> <br><br> 
+                        </div>
+                    </div>
+
+                    <!-- Register -->
+                    <p>Not a member? <a href="/view-sign-up">Sign Up!</a>
+                    <br>Or Continue to<br>
+                        <a href="/guest-checkout">Guest Checkout here</a>
+                    </p>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+<%- include('layouts/footer.ejs') %>
